@@ -1,0 +1,38 @@
+#!/bin/bash
+
+FILEPATH=$1;
+SEARCH=$2;
+REPLACE=$3;
+
+#if 1st parameter is a valid path
+if [[ -e $FILEPATH ]]
+  then
+    #if 1st parameter is a directory
+    if [[ -d $FILEPATH ]]
+      then
+	#if search parameter is provided
+        if [[ -z $SEARCH  ]]
+          then
+	    echo "Search parameter not provided";
+	  else
+	    #if replacement parameter is provided
+	    if [[ -z $REPLACE ]]
+	      then
+		echo "Replacement parameter not provided";
+	      else
+		#output search to terminal, prompt for do replace
+		grep -lR $SEARCH $FILEPATH
+		read -p 'Do you want to execute the replace on the above files? [y/n] ' YorN
+		if [ $YorN = "y" ]; then
+		 find $FILEPATH -type f -exec sed -i '' 's/'$SEARCH'/'$REPLACE'/g' {} + 
+		elif [ $YorN = "n" ]; then
+		  exit 1;  
+		fi
+	    fi
+        fi
+      else
+        echo "$FILEPATH is not a directory";
+    fi
+  else
+    echo "$FILEPATH does not exist";
+fi
