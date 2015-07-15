@@ -18,10 +18,13 @@ fandr ~/Documents/folder someonesemail@domain.com newemail@newdomain.com
 
 The script will run a grep command first and print the results of a search first and then prompt you if you want to run the replace.  This will allow you to just use the script to find something if you'd like.
 
-Expected inputs
-y - Run the find and replace
+Expected inputs<br/>
+y - Run the find and replace<br/>
 n - Exit
 
 Any unexpected input will exit the script
 
 I will probably enhance this eventually but wanted to get one working quickly
+
+### Note
+I'm not sure that it can handle search and replacement parameters with spaces or quotes (both ' and ") in it so to be safe for now I wouldn't try including them.
